@@ -19,7 +19,7 @@ body {
 
 @font-face {
     font-family: Rubik;
-    src: url("media/Rubik/Rubik-VariableFont_wght.ttf");
+    src: url("/media/Rubik/Rubik-VariableFont_wght.ttf");
 }
 
 #root {
@@ -39,7 +39,7 @@ body {
     );
     aspect-ratio: 440 / 956;
     overflow: hidden;
-    background-image: url("media/OpenPage/space-background.jpg");
+    background-image: url("/media/OpenPage/space-background.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -82,7 +82,7 @@ body {
     width: 90cqw;
     height: 36cqw;
     transform: translate(-50%, -50%) rotate(25deg);
-    background-image: url("media/comet.png");
+    background-image: url("/media/comet.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
