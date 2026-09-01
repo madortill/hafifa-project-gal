@@ -21,7 +21,36 @@
     position: absolute;
     top: 60%;
     left: 50%;
+}
 
+.exp-bubble {
+    width: 80cqw;
+    position: absolute;
+    top: 40cqw;
+    left: 3cqw;
+}
+
+.holding-tom {
+    width: 30cqw;
+    position: absolute;
+    top: 130cqw;
+    left: 70cqw;
+}
+
+.practiceDiv {
+    position: absolute;
+    top: 65cqw;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+}
+
+.rotate-button {
+    transform: translate(-75%, -55%) rotate(35deg);
+}
+
+.practiceTitle {
+    margin-top: 8cqw;
 }
 
 .main-asteroid {

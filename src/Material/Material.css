@@ -28,7 +28,6 @@
     text-align: center;
 }
 
-
 .material-title {
     margin-top: 10cqw;
 }
@@ -53,7 +52,6 @@
     left: 50cqw;
 }
 
-
 .earthText {
     position: absolute;
     top: 108cqw;
@@ -66,4 +64,96 @@
     top: 70cqw;
     left: 8cqw;
     height: 20cqw;
+}
+
+.question {
+    width: 80cqw;
+    position: absolute;
+    top: 20cqw;
+    left: 1cqw;
+    cursor: pointer;
+}
+
+.questioningTom {
+    position: absolute;
+    top: 50cqw;
+    left: 70cqw;
+    width: 30cqw;
+}
+
+.answerBubble {
+    width: 85cqw;
+    position: absolute;
+    top: 100cqw;
+    left: 4cqw;
+}
+
+
+.question-enter {
+    animation: questionEnter 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes questionEnter {
+    0% {
+        opacity: 0;
+        transform: translateY(-8cqw) scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+.tom-enter {
+    animation:
+        tomEnter 0.8s 0.35s backwards,
+        tomFloat 2.5s 1.2s ease-in-out infinite;
+}
+
+@keyframes tomEnter {
+    0% {
+        opacity: 0;
+        transform: translateX(12cqw) rotate(8deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0) rotate(0);
+    }
+}
+
+@keyframes tomFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-1.5cqw);
+    }
+}
+
+
+
+.answer-enter {
+    animation: answerEnter 0.75s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes answerEnter {
+    0% {
+        opacity: 0;
+        transform: translateY(12cqw) scale(0.85);
+    }
+
+    70% {
+        opacity: 1;
+        transform: translateY(-1cqw) scale(1.02);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }

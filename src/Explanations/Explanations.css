@@ -3,6 +3,11 @@
     top: 55%;
     left: 65%;
     width: 35cqw;
+    user-select: none;
+    -webkit-user-drag: none;
+    animation:
+        tomExplanationEnter 0.7s 0.15s both,
+        tomExplanationFloat 3s 0.9s ease-in-out infinite;
 }
 
 .small-text-bubble {
@@ -11,6 +16,8 @@
     height: 40cqw;
     top: 40%;
     left: 7%;
+    transform-origin: bottom right;
+    animation: explanationBubbleEnter 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 .large-text-bubble {
@@ -19,6 +26,8 @@
     height: 70cqw;
     top: 28%;
     left: 2%;
+    transform-origin: bottom right;
+    animation: explanationBubbleEnter 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 .explanations-text {
@@ -31,6 +40,8 @@
     width: 60cqw;
     direction: rtl;
     text-align: right;
+    opacity: 0;
+    animation: explanationTextEnter 0.55s 0.35s ease-out forwards;
 }
 
 .explanations-large-text {
@@ -43,11 +54,133 @@
     width: 60cqw;
     direction: rtl;
     text-align: right;
+    opacity: 0;
+    animation: explanationTextEnter 0.55s 0.35s ease-out forwards;
 }
 
-.comet-button-div {
+.explanations-next-button {
     position: absolute;
     top: 57%;
     left: 30%;
     transform: translate(-50%, -50%) rotate(35deg);
+    cursor: pointer;
+    opacity: 0;
+    animation:
+        explanationButtonEnter 0.45s 0.7s ease-out forwards,
+        explanationButtonGlow 1.8s 1.2s ease-in-out infinite;
+    transition: transform 0.2s ease;
+}
+
+.explanations-next-button:hover {
+    transform:
+        translate(-50%, -50%)
+        rotate(35deg)
+        scale(1.05);
+}
+
+.explanations-next-button:active {
+    transform:
+        translate(-50%, -50%)
+        rotate(35deg)
+        scale(0.95);
+}
+
+
+@keyframes explanationBubbleEnter {
+    0% {
+        opacity: 0;
+        transform: scale(0.65) translateY(5cqw);
+    }
+
+    70% {
+        opacity: 1;
+        transform: scale(1.03) translateY(-0.5cqw);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+
+/* =========================
+   כניסת הטקסט
+========================= */
+
+@keyframes explanationTextEnter {
+    0% {
+        opacity: 0;
+        transform: translateY(3cqw);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes tomExplanationEnter {
+    0% {
+        opacity: 0;
+        transform:
+            translateX(15cqw)
+            rotate(8deg)
+            scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform:
+            translateX(0)
+            rotate(0)
+            scale(1);
+    }
+}
+
+@keyframes tomExplanationFloat {
+    0%,
+    100% {
+        transform: translateY(0) rotate(0);
+    }
+
+    50% {
+        transform: translateY(-1.5cqw) rotate(1deg);
+    }
+}
+
+
+@keyframes explanationButtonEnter {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes explanationButtonGlow {
+    0%,
+    100% {
+        filter: drop-shadow(0 0 0 transparent);
+    }
+
+    50% {
+        filter: drop-shadow(0 0 2cqw rgba(255, 255, 255, 0.8));
+    }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+    .tom-explanations,
+    .small-text-bubble,
+    .large-text-bubble,
+    .explanations-text,
+    .explanations-large-text,
+    .explanations-next-button {
+        animation: none;
+        opacity: 1;
+    }
 }

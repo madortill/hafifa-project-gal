@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 
 import majorTom from "../../media/tom.png";
 import ExplanationsData from "../../data/Explanations.json";
@@ -10,27 +10,25 @@ import "./Explanations.css";
 function Explanations({ pageNum, toNextpage }) {
     const [explanationNum, setExplanationNum] = useState(0);
 
-    // אם אנחנו בעמוד 2 תמיד נציג את ההסבר השלישי
     const currentExplanation =
         pageNum === 2 ? 2 : explanationNum;
 
 
     const handleNext = () => {
 
-        // בעמוד 1 - הסבר ראשון
+        // הסבר ראשון -> הסבר שני
         if (pageNum === 1 && explanationNum === 0) {
             setExplanationNum(1);
             return;
         }
 
-        // בעמוד 1 - הסבר שני
-        // עוברים לעמוד 2
+        // הסבר שני -> עמוד 2
         if (pageNum === 1 && explanationNum === 1) {
             toNextpage();
             return;
         }
 
-        // בעמוד 2 - ממשיכים לעמוד הבא
+        // עמוד 2 -> העמוד הבא
         if (pageNum === 2) {
             toNextpage();
         }
@@ -39,40 +37,47 @@ function Explanations({ pageNum, toNextpage }) {
 
     return (
         <>
-            <img
-                src={majorTom}
-                className="tom-explanations"
-                alt=""
-            />
+            <Fragment key={currentExplanation}>
 
-            <img
-                src={textBubble}
-                className={
-                    currentExplanation === 2
-                        ? "large-text-bubble"
-                        : "small-text-bubble"
-                }
-                alt=""
-            />
+                <img
+                    src={majorTom}
+                    className="tom-explanations"
+                    alt=""
+                    draggable="false"
+                />
 
-            <div
-                className="comet-button-div open-page-button"
-                onClick={handleNext}
-            >
-                <p>המשך</p>
-            </div>
+                <img
+                    src={textBubble}
+                    className={
+                        currentExplanation === 2
+                            ? "large-text-bubble"
+                            : "small-text-bubble"
+                    }
+                    alt=""
+                    draggable="false"
+                />
 
-            <p
-                className={
-                    currentExplanation === 2
-                        ? "explanations-large-text"
-                        : "explanations-text"
-                }
-            >
-                {ExplanationsData[currentExplanation].text}
-            </p>
+                <p
+                    className={
+                        currentExplanation === 2
+                            ? "explanations-large-text"
+                            : "explanations-text"
+                    }
+                >
+                    {ExplanationsData[currentExplanation].text}
+                </p>
 
-            {/* רק בהסבר השני של עמוד 1 */}
+                <div
+                    className="comet-button-div open-page-button explanations-next-button"
+                    onClick={handleNext}
+                >
+                    <p>המשך</p>
+                </div>
+
+            </Fragment>
+
+
+            {/* רק בהסבר השני */}
             {pageNum === 1 && explanationNum === 1 && (
                 <NavigationArrows glow />
             )}

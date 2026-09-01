@@ -1,4 +1,4 @@
-import logo from "../../media/logo.svg"
+import logo from "../../media/asteroid-logo.svg"
 import "./Logo.css"
 function Logo({ onClick, glow}) {
     return (
