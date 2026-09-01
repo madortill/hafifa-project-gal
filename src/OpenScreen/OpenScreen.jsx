@@ -1,5 +1,6 @@
 import "./OpenScreen.css"
 import comet from "../../media/comet.png"
+import asteroid from "../../media/OpenPage/asteroid.png";
 function OpenScreen({setPageNum}) {
 
   return (
@@ -9,7 +10,7 @@ function OpenScreen({setPageNum}) {
         <h1 className="main-title">אסטרואידים</h1>
       </div>
 
-      <img className="main-asteroid" src="media/OpenPage/asteroid.png" alt="asteroid"/>
+      <img className="main-asteroid" src={asteroid} alt="asteroid"/>
         <div className="comet-button-div open-page-button" onClick={setPageNum}>
         <p>שנתחיל?</p>
         </div>
