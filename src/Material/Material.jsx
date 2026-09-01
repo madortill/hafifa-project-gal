@@ -1,5 +1,5 @@
 import majorTom from "../../media/tom.png"
-import cunningAsteroid from "../../media/Material/cunningAsteroid.png"
+import cunningAsteroid from "../../media/Material/cunningasteroid.png"
 import earth from "../../media/Material/earth.png"
 import earthText from "../../media/Material/earthText.svg"
 import asteroidText from "../../media/Material/asteroidText.svg"
