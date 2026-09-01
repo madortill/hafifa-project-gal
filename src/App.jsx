@@ -6,6 +6,8 @@ import OpenScreen from "./OpenScreen/OpenScreen.jsx";
 import Explanations from "./Explanations/Explanations.jsx";
 import NavigationArrows from "./NavigationArrows/NavigationArrows.jsx";
 import Logo from "./Logo/Logo.jsx";
+import Card from "./Card/Card.jsx"
+import CardsPage from "./CardsPage/CardsPage.jsx";
 
 function App() {
   const [pageNum, setPageNum] = useState(0);
@@ -59,7 +61,13 @@ function App() {
       )}
 
       {(pageNum === 3 || pageNum===4) && <Material pageNum={pageNum}/>}
-
+       
+       {pageNum === 5 && (
+        <CardsPage
+          toPrevpage={toPrevpage}
+          toNextpage={toNextpage}
+        />
+      )}
     </div>
   );
 }

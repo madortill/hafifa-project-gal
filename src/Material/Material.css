@@ -17,13 +17,53 @@
     text-align: center;
 }
 
+.large-material-div {
+    background-color: rgba(255, 255, 255, 0.25);
+    width: 80cqw;
+    height: 150cqw;
+    position: absolute;
+    top: 16%;
+    left: 10%;
+    border-radius: 20px;
+    text-align: center;
+}
+
+
 .material-title {
     margin-top: 10cqw;
 }
 
 .material-text {
     width: 70cqw;
-    margin: 10cqw auto 0;
+    margin: 3cqw auto 0;
     text-align: center;
 }
 
+.earth {
+    position: absolute;
+    width: 25cqw;
+    top: 125cqw;
+    left: 5cqw;
+}
+
+.cunningAsteroid {
+    position: absolute;
+    width: 25cqw;
+    top: 80cqw;
+    left: 50cqw;
+}
+
+
+.earthText {
+    position: absolute;
+    top: 108cqw;
+    left: 20cqw;
+    height: 20cqw;
+}
+
+.asteroidText {
+    position: absolute;
+    top: 70cqw;
+    left: 8cqw;
+    height: 20cqw;
+}

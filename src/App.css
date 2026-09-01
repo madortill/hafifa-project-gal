@@ -17,6 +17,10 @@ body {
     box-sizing: border-box;
 }
 
+p {
+    font-size: 5.5cqw;
+}
+
 @font-face {
     font-family: Rubik;
     src: url("../media/Rubik/Rubik-VariableFont_wght.ttf");

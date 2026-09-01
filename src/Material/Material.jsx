@@ -1,4 +1,8 @@
 import majorTom from "../../media/tom.png"
+import cunningAsteroid from "../../media/Material/cunningAsteroid.png"
+import earth from "../../media/Material/earth.png"
+import earthText from "../../media/Material/earthText.svg"
+import asteroidText from "../../media/Material/asteroidText.svg"
 import "./Material.css"
 
 function Material({pageNum}){
@@ -16,10 +20,13 @@ return (
 
     {pageNum===4&& 
     <>
-    <div className="small-material-div">
+    <div className="large-material-div">
         <h2 className="material-title">מהו אסטרואיד?</h2>
         <p className="material-text">אסטרואיד הוא יצור מרושע שמטרתו להשמיד את כדור הארץ ואנחנו בברוגז איתו, ממש. הוא נראה כמו כדור עגול כזה אבל לא חלק כי יש לו בליטות ממש מכוערות שנראות כמו חצ'קונים.</p>
-        
+        <img className="earth" src={earth}/>
+        <img className="cunningAsteroid" src={cunningAsteroid}/>
+        <img className="earthText" src={earthText}/>
+        <img className="asteroidText" src={asteroidText}/>
     </div>
     </>
     }

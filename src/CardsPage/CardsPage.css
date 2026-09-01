@@ -1,0 +1,142 @@
+.cards-page {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+
+/* =============================
+   כותרת
+============================= */
+
+.cards-page-title {
+    position: absolute;
+    top: 9%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    color: white;
+    font-size: 7cqw;
+    font-weight: 800;
+    text-align: center;
+    z-index: 5;
+}
+
+
+/* =============================
+   קרוסלה
+============================= */
+
+.cards-carousel {
+    position: absolute;
+    top: 25%;
+    left: 0;
+    width: 100%;
+    height: 105cqw;
+    overflow: visible;
+    touch-action: pan-y;
+    cursor: grab;
+}
+
+.cards-carousel:active {
+    cursor: grabbing;
+}
+
+
+/* =============================
+   כל כרטיס בתוך הקרוסלה
+============================= */
+
+.cards-carousel-item {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 68cqw;
+    transition:
+        transform 0.5s cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        ),
+        opacity 0.35s ease;
+    will-change:
+        transform,
+        opacity;
+    pointer-events: none;
+}
+
+.cards-carousel-item.active-card {
+    pointer-events: auto;
+}
+
+
+/* =============================
+   בר התקדמות
+============================= */
+
+.cards-progress {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    direction: ltr;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5cqw;
+    z-index: 5;
+}
+
+
+/* =============================
+   נקודה רגילה
+============================= */
+
+.cards-progress-dot {
+    width: 3.5cqw;
+    height: 3.5cqw;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background-color:
+        rgba(
+            255,
+            255,
+            255,
+            0.8
+        );
+    cursor: pointer;
+    transition:
+        width 0.3s ease,
+        border-radius 0.3s ease,
+        background-color 0.3s ease,
+        opacity 0.3s ease;
+}
+
+
+/* =============================
+   הכרטיס הנוכחי
+============================= */
+
+.cards-progress-dot.active-progress-dot {
+    width: 8cqw;
+    border-radius: 10cqw;
+    background-color: white;
+}
+
+
+/* =============================
+   ביטול סימון בזמן swipe
+============================= */
+
+.cards-carousel img {
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+}
