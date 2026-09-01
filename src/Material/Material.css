@@ -1,0 +1,29 @@
+.material-tom {
+    position: absolute;
+    transform: scaleX(-1);
+    width: 35cqw;
+    top: 63%;
+    left: 1%;
+}
+
+.small-material-div {
+    background-color: rgba(255, 255, 255, 0.25);
+    width: 80cqw;
+    height: 100cqw;
+    position: absolute;
+    top: 16%;
+    left: 10%;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.material-title {
+    margin-top: 10cqw;
+}
+
+.material-text {
+    width: 70cqw;
+    margin: 10cqw auto 0;
+    text-align: center;
+}
+

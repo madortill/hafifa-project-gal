@@ -1,0 +1,47 @@
+.left-moon {
+    width: 27cqw;
+    transform: rotate(26deg);
+}
+
+.right-moon {
+    width: 27cqw;
+    transform: rotate(220deg);
+    opacity: 0.6;
+}
+.arrows-div {
+    position: absolute;
+    top: 87%;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 46cqw;
+}
+
+.arrows-glow .left-moon,
+.arrows-glow .right-moon {
+    filter:
+        drop-shadow(0 0 1.5cqw white)
+        drop-shadow(0 0 3cqw white);
+
+        animation: arrowsGlow 3s infinite;
+}
+
+
+@keyframes arrowsGlow {
+    0% {
+        filter:
+            drop-shadow(0 0 0.5cqw white)
+            drop-shadow(0 0 1cqw white);
+    }
+
+    50% {
+        filter:
+            drop-shadow(0 0 2cqw white)
+            drop-shadow(0 0 4cqw white);
+    }
+
+    100% {
+        filter:
+            drop-shadow(0 0 0.5cqw white)
+            drop-shadow(0 0 1cqw white);
+    }
+}

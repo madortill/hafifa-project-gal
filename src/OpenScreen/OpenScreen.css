@@ -1,0 +1,44 @@
+.main-title {
+    font-weight: 800;
+    font-size: 18cqw;
+    margin-top: 4cqw;
+}
+
+.secondary-title {
+    font-weight: 800;
+    font-size: 7cqw;
+}
+
+.open-page-div {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+}
+
+.open-page-button {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+
+}
+
+.main-asteroid {
+    width: 80cqw;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translateX(-50%) rotate(300deg);
+    /* animation: asteroidAnim 3s infinite linear; */
+}
+
+@keyframes asteroidAnim {
+    from {
+        transform: translateX(-50%) rotate(0deg);
+    }
+
+    to {
+        transform: translateX(-50%) rotate(360deg);
+    }
+} 

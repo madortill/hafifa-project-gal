@@ -1,0 +1,33 @@
+.logo-button {
+    width: 18cqw;
+    position: absolute;
+    left: 80%;
+    top: 1%;
+}
+
+.logo-glow {
+    animation: logoGlow 1.8s ease-in-out infinite;
+}
+
+@keyframes logoGlow {
+    0% {
+        filter:
+            drop-shadow(0 0 0.5cqw white)
+            drop-shadow(0 0 1cqw white);
+        opacity: 0.7;
+    }
+
+    50% {
+        filter:
+            drop-shadow(0 0 2cqw white)
+            drop-shadow(0 0 4cqw white);
+        opacity: 1;
+    }
+
+    100% {
+        filter:
+            drop-shadow(0 0 0.5cqw white)
+            drop-shadow(0 0 1cqw white);
+        opacity: 0.7;
+    }
+}

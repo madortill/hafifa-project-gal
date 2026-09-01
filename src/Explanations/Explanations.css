@@ -1,0 +1,53 @@
+.tom-explanations {
+    position: absolute;
+    top: 55%;
+    left: 65%;
+    width: 35cqw;
+}
+
+.small-text-bubble {
+    position: absolute;
+    width: 70cqw;
+    height: 40cqw;
+    top: 40%;
+    left: 7%;
+}
+
+.large-text-bubble {
+    position: absolute;
+    width: 75cqw;
+    height: 70cqw;
+    top: 28%;
+    left: 2%;
+}
+
+.explanations-text {
+    position: absolute;
+    top: 42%;
+    left: 10%;
+    color: black;
+    font-size: 5cqw;
+    font-weight: 700;
+    width: 60cqw;
+    direction: rtl;
+    text-align: right;
+}
+
+.explanations-large-text {
+    position: absolute;
+    top: 32%;
+    left: 10%;
+    color: black;
+    font-size: 5cqw;
+    font-weight: 700;
+    width: 60cqw;
+    direction: rtl;
+    text-align: right;
+}
+
+.comet-button-div {
+    position: absolute;
+    top: 57%;
+    left: 30%;
+    transform: translate(-50%, -50%) rotate(35deg);
+}
