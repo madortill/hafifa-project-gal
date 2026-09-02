@@ -68,15 +68,15 @@ h1 {
 
 .open-page-div {
     position: absolute;
-    top: 40%;
+    top: 60%;
     left: 50%;
-    width: 100%;
+    width: 110%;
     transform: translate(-50%, -50%);
 }
 
 .open-page-button {
     position: absolute;
-    top: 60%;
+    top: 100%;
     left: 50%;
 }
 
@@ -85,7 +85,7 @@ h1 {
 .comet-button-div {
     color: black;
     position: absolute;
-    top: 60%;
+    top: 65%;
     left: 50%;
     width: 90cqw;
     height: 36cqw;
@@ -110,7 +110,7 @@ h1 {
 }
 
 .comet-button {
-    width: 100%;
+    width: 110%;
     display: block;
     transform: rotate(30deg);
 }

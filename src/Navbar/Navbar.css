@@ -1,0 +1,179 @@
+.navbar-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 9999;
+    background-color: rgba(0, 3, 10, 0.94);
+    animation: navbarEnter 0.3s ease-out both;
+}
+
+.navbar-rope {
+    position: absolute;
+    width: 92cqw;
+    height: 192cqw;
+    top: 3cqw;
+    left: 2cqw;
+    object-fit: fill;
+    z-index: 1;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.navbar-node {
+    position: absolute;
+    width: 44cqw;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    z-index: 3;
+    overflow: visible;
+    transition: opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.navbar-bowie {
+    display: block;
+    width: 100%;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.navbar-node-1 {
+    top: 5cqw;
+    left: 5cqw;
+}
+
+.navbar-node-2 {
+    top: 39cqw;
+    right: 2cqw;
+}
+
+.navbar-node-3 {
+    top: 69cqw;
+    left: 0;
+}
+
+.navbar-node-4 {
+    top: 101cqw;
+    right: 1cqw;
+}
+
+.navbar-node-5 {
+    top: 133cqw;
+    left: 1cqw;
+}
+
+.navbar-node-6 {
+    top: 165cqw;
+    right: 0;
+}
+
+.navbar-node-passed {
+    opacity: 0.45;
+    filter: grayscale(0.25);
+}
+
+.navbar-node-next {
+    opacity: 1;
+    filter: none;
+}
+
+.navbar-node-locked {
+    opacity: 1;
+    filter: none;
+    cursor: default;
+}
+
+.navbar-node-current {
+    opacity: 1;
+    transform: scale(1.03);
+    filter:
+        drop-shadow(0 0 1cqw #5ac8ff)
+        drop-shadow(0 0 3cqw #159cff)
+        drop-shadow(0 0 6cqw rgba(21, 156, 255, 0.85));
+    animation: navbarCurrentGlow 1.7s ease-in-out infinite;
+}
+
+.navbar-walking-tom {
+    position: absolute;
+    width: 15cqw;
+    top: -11cqw;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.navbar-back-button {
+    position: absolute;
+    left: 4cqw;
+    bottom: 4cqw;
+    width: 27cqw;
+    height: 12cqw;
+    border: 0.5cqw solid white;
+    border-radius: 10cqw;
+    background-color: #ff8a18;
+    color: white;
+    font-family: inherit;
+    font-size: 4.5cqw;
+    font-weight: 800;
+    cursor: pointer;
+    z-index: 50;
+    box-shadow: 0 0 2cqw rgba(255, 138, 24, 0.6);
+}
+
+.navbar-close-button {
+    position: absolute;
+    top: 3cqw;
+    right: 4cqw;
+    width: 11cqw;
+    height: 11cqw;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: white;
+    font-family: inherit;
+    font-size: 9cqw;
+    font-weight: 300;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 50;
+}
+
+.navbar-close-button:active,
+.navbar-back-button:active {
+    transform: scale(0.92);
+}
+
+@keyframes navbarCurrentGlow {
+    0%, 100% {
+        filter:
+            drop-shadow(0 0 1cqw #5ac8ff)
+            drop-shadow(0 0 3cqw #159cff)
+            drop-shadow(0 0 5cqw rgba(21, 156, 255, 0.65));
+    }
+
+    50% {
+        filter:
+            drop-shadow(0 0 2cqw #9be4ff)
+            drop-shadow(0 0 5cqw #159cff)
+            drop-shadow(0 0 8cqw rgba(21, 156, 255, 0.9));
+    }
+}
+
+@keyframes navbarEnter {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

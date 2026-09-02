@@ -53,6 +53,25 @@
     margin-top: 8cqw;
 }
 
+.end-title {
+    position: absolute;
+    top: 40cqw;
+    font-weight: 800;
+    font-size: 12cqw;
+}
+
+.title-down {
+    top: 70cqw;
+}
+
+.holding-tom-last {
+    position: absolute;
+    top: 145cqw;
+    width: 30cqw;
+    left: 50cqw;
+
+}
+
 .main-asteroid {
     width: 80cqw;
     position: absolute;
@@ -71,3 +90,43 @@
         transform: translateX(-50%) rotate(360deg);
     }
 } 
+
+.astronaut-name-input {
+    position: absolute;
+    top: 108cqw;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 68cqw;
+    height: 11cqw;
+    padding: 0 5cqw;
+    border: 0.5cqw solid rgba(255, 255, 255, 0.8);
+    border-radius: 8cqw;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white;
+    font-family: inherit;
+    font-size: 4.2cqw;
+    font-weight: 600;
+    text-align: center;
+    direction: rtl;
+    z-index: 10;
+    box-shadow:
+        0 0 1.5cqw rgba(255, 255, 255, 0.25),
+        inset 0 0 2cqw rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(0.8cqw);
+    -webkit-backdrop-filter: blur(0.8cqw);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.astronaut-name-input::placeholder {
+    color: rgba(255, 255, 255, 0.65);
+    font-weight: 400;
+}
+
+.astronaut-name-input:focus {
+    border-color: #eaa236;
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow:
+        0 0 1.5cqw #ff3838,
+        0 0 4cqw rgba(88, 207, 255, 0.55);
+}
