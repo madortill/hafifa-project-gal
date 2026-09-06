@@ -14,7 +14,7 @@ function OpenScreen({ pageNum, toNextpage, restartCourse, astronautName, setAstr
           </div>
 
           <img
-            className="main-asteroid"
+            className="main-asteroid asteroid-anim-class"
             src={asteroid}
             alt="asteroid"
           />
@@ -24,11 +24,11 @@ function OpenScreen({ pageNum, toNextpage, restartCourse, astronautName, setAstr
             className="astronaut-name-input"
             value={astronautName}
             onChange={event => setAstronautName(event.target.value)}
-            placeholder="איך קוראים לכם?"
+            placeholder="לפני הכל, איך קוראים לך?"
           />
 
           <div
-            className="comet-button-div open-page-button"
+            className="comet-button-div open-page-button down-button"
             onClick={toNextpage}
           >
             <p>שנתחיל?</p>

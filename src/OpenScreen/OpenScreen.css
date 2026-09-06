@@ -78,7 +78,10 @@
     top: 80%;
     left: 50%;
     transform: translateX(-50%) rotate(300deg);
-    /* animation: asteroidAnim 3s infinite linear; */
+}
+
+.asteroid-anim-class {
+    animation: asteroidAnim 5s infinite linear; 
 }
 
 @keyframes asteroidAnim {
@@ -91,6 +94,10 @@
     }
 } 
 
+
+.down-button {
+    top: 70%;
+}
 .astronaut-name-input {
     position: absolute;
     top: 108cqw;

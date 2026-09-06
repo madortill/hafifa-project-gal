@@ -19,36 +19,49 @@ const MAX_STRIKES = 3;
 const tomFaces = [tomFace1, tomFace2, tomFace3];
 
 const asteroids = [
-    { id: 1, image: babyAsteroid, className: "game-asteroid asteroid-one" },
-    { id: 2, image: babyAsteroid, className: "game-asteroid asteroid-two" },
-    { id: 3, image: teenagerAsteroid, className: "game-asteroid asteroid-three" },
-    { id: 4, image: oldAsteroid, className: "game-asteroid asteroid-four" }
+    { id: 1, image: babyAsteroid, className: "asteroid-one" },
+    { id: 2, image: babyAsteroid, className: "asteroid-two" },
+    { id: 3, image: teenagerAsteroid, className: "asteroid-three" },
+    { id: 4, image: oldAsteroid, className: "asteroid-four" },
+    { id: 5, image: teenagerAsteroid, className: "asteroid-five" }
 ];
 
 function getRandomCoordinate(usedCoordinates) {
     const availableCoordinates = [];
+
     ROWS.forEach(row => {
         COLUMNS.forEach(column => {
             const coordinate = `${column}${row}`;
+
             if (!usedCoordinates.has(coordinate)) {
                 availableCoordinates.push(coordinate);
             }
         });
     });
-    const randomIndex = Math.floor(Math.random() * availableCoordinates.length);
+
+    const randomIndex = Math.floor(
+        Math.random() * availableCoordinates.length
+    );
+
     return availableCoordinates[randomIndex];
 }
 
-function Game({ toNextpage }) {
+function Game({ toNextpage, isPaused = false }) {
     const usedCoordinates = useRef(new Set());
     const feedbackTimeout = useRef(null);
 
     const [round, setRound] = useState(1);
+
     const [targetCoordinate, setTargetCoordinate] = useState(() => {
-        const firstCoordinate = getRandomCoordinate(usedCoordinates.current);
+        const firstCoordinate = getRandomCoordinate(
+            usedCoordinates.current
+        );
+
         usedCoordinates.current.add(firstCoordinate);
+
         return firstCoordinate;
     });
+
     const [timeLeft, setTimeLeft] = useState(ROUND_TIME);
     const [strikes, setStrikes] = useState(0);
     const [feedback, setFeedback] = useState("normal");
@@ -57,6 +70,7 @@ function Game({ toNextpage }) {
     const [gameEnded, setGameEnded] = useState(false);
     const [isWin, setIsWin] = useState(false);
     const [gameStarted, setGameStarted] = useState(true);
+    const [destroyedAsteroids, setDestroyedAsteroids] = useState([]);
 
     const resetGame = () => {
         sessionStorage.removeItem("asteroidQuizCurrentQuestion");
@@ -67,9 +81,15 @@ function Game({ toNextpage }) {
         if (feedbackTimeout.current) {
             clearTimeout(feedbackTimeout.current);
         }
+
         usedCoordinates.current = new Set();
-        const firstCoordinate = getRandomCoordinate(usedCoordinates.current);
+
+        const firstCoordinate = getRandomCoordinate(
+            usedCoordinates.current
+        );
+
         usedCoordinates.current.add(firstCoordinate);
+
         setRound(1);
         setTargetCoordinate(firstCoordinate);
         setTimeLeft(ROUND_TIME);
@@ -80,10 +100,11 @@ function Game({ toNextpage }) {
         setGameEnded(false);
         setIsWin(false);
         setGameStarted(true);
+        setDestroyedAsteroids([]);
     };
 
-    const handleMistake = (coordinate = null) => {
-        if (isLocked || gameEnded) return;
+    const handleMistake = coordinate => {
+        if (isLocked || gameEnded || isPaused) return;
 
         setIsLocked(true);
         setFeedback("wrong");
@@ -98,6 +119,7 @@ function Game({ toNextpage }) {
         }
 
         const newStrikes = strikes + 1;
+
         setStrikes(newStrikes);
 
         if (newStrikes >= MAX_STRIKES) {
@@ -106,6 +128,7 @@ function Game({ toNextpage }) {
                 setIsWin(false);
                 setIsLocked(false);
             }, 1200);
+
             return;
         }
 
@@ -118,14 +141,27 @@ function Game({ toNextpage }) {
     };
 
     const handleCorrectAnswer = coordinate => {
-        if (isLocked || gameEnded) return;
+        if (isLocked || gameEnded || isPaused) return;
 
         setIsLocked(true);
         setFeedback("correct");
+
         setHighlightedCell({
             coordinate,
             type: "correct"
         });
+
+        const asteroidToDestroy = asteroids[round - 1];
+
+        if (asteroidToDestroy) {
+            setDestroyedAsteroids(prev => {
+                if (prev.includes(asteroidToDestroy.id)) {
+                    return prev;
+                }
+
+                return [...prev, asteroidToDestroy.id];
+            });
+        }
 
         feedbackTimeout.current = setTimeout(() => {
             if (round === TOTAL_ROUNDS) {
@@ -135,7 +171,10 @@ function Game({ toNextpage }) {
                 return;
             }
 
-            const nextCoordinate = getRandomCoordinate(usedCoordinates.current);
+            const nextCoordinate = getRandomCoordinate(
+                usedCoordinates.current
+            );
+
             usedCoordinates.current.add(nextCoordinate);
 
             setRound(prev => prev + 1);
@@ -148,7 +187,7 @@ function Game({ toNextpage }) {
     };
 
     const handleCellClick = coordinate => {
-        if (isLocked || gameEnded) return;
+        if (isLocked || gameEnded || isPaused) return;
 
         if (coordinate === targetCoordinate) {
             handleCorrectAnswer(coordinate);
@@ -173,7 +212,8 @@ function Game({ toNextpage }) {
         if (feedback === "wrong") {
             return (
                 <>
-                    זו לא הקואורדינטה הנכונה, זכרו שיש לנטרל את האסטרואיד ב-
+                    זו לא הקואורדינטה הנכונה, זכרו שיש לנטרל את
+                    האסטרואיד ב-
                     <strong>{targetCoordinate}</strong>
                 </>
             );
@@ -199,23 +239,50 @@ function Game({ toNextpage }) {
     }, []);
 
     useEffect(() => {
-        if (!gameStarted || gameEnded || isLocked) return;
+        if (
+            !gameStarted ||
+            gameEnded ||
+            isLocked ||
+            isPaused
+        ) {
+            return;
+        }
 
         const interval = setInterval(() => {
             setTimeLeft(prev => {
                 if (prev <= 1) return 0;
+
                 return prev - 1;
             });
         }, 1000);
 
         return () => clearInterval(interval);
-    }, [gameStarted, gameEnded, isLocked, round, targetCoordinate]);
+    }, [
+        gameStarted,
+        gameEnded,
+        isLocked,
+        isPaused,
+        round,
+        targetCoordinate
+    ]);
 
     useEffect(() => {
-        if (timeLeft === 0 && gameStarted && !gameEnded && !isLocked) {
+        if (
+            timeLeft === 0 &&
+            gameStarted &&
+            !gameEnded &&
+            !isLocked &&
+            !isPaused
+        ) {
             handleMistake();
         }
-    }, [timeLeft, gameStarted, gameEnded, isLocked]);
+    }, [
+        timeLeft,
+        gameStarted,
+        gameEnded,
+        isLocked,
+        isPaused
+    ]);
 
     return (
         <div className="game-page">
@@ -248,7 +315,11 @@ function Game({ toNextpage }) {
                                 src={face}
                                 alt=""
                                 draggable="false"
-                                className={index < strikes ? "game-life lost-life" : "game-life"}
+                                className={
+                                    index < strikes
+                                        ? "game-life lost-life"
+                                        : "game-life"
+                                }
                             />
                         ))}
                     </div>
@@ -256,13 +327,17 @@ function Game({ toNextpage }) {
                     <div className="game-board-wrapper">
                         <div className="game-column-labels">
                             {COLUMNS.map(column => (
-                                <span key={column}>{column}</span>
+                                <span key={column}>
+                                    {column}
+                                </span>
                             ))}
                         </div>
 
                         <div className="game-row-labels">
                             {ROWS.map(row => (
-                                <span key={row}>{row}</span>
+                                <span key={row}>
+                                    {row}
+                                </span>
                             ))}
                         </div>
 
@@ -270,15 +345,29 @@ function Game({ toNextpage }) {
                             <div className="game-grid">
                                 {ROWS.map(row =>
                                     COLUMNS.map(column => {
-                                        const coordinate = `${column}${row}`;
-                                        const isHighlighted = highlightedCell?.coordinate === coordinate;
+                                        const coordinate =
+                                            `${column}${row}`;
+
+                                        const isHighlighted =
+                                            highlightedCell
+                                                ?.coordinate ===
+                                            coordinate;
+
                                         let cellClass = "game-cell";
 
-                                        if (isHighlighted && highlightedCell.type === "correct") {
+                                        if (
+                                            isHighlighted &&
+                                            highlightedCell.type ===
+                                                "correct"
+                                        ) {
                                             cellClass += " correct-cell";
                                         }
 
-                                        if (isHighlighted && highlightedCell.type === "wrong") {
+                                        if (
+                                            isHighlighted &&
+                                            highlightedCell.type ===
+                                                "wrong"
+                                        ) {
                                             cellClass += " wrong-cell";
                                         }
 
@@ -287,7 +376,11 @@ function Game({ toNextpage }) {
                                                 key={coordinate}
                                                 type="button"
                                                 className={cellClass}
-                                                onClick={() => handleCellClick(coordinate)}
+                                                onClick={() =>
+                                                    handleCellClick(
+                                                        coordinate
+                                                    )
+                                                }
                                                 aria-label={coordinate}
                                             />
                                         );
@@ -296,15 +389,46 @@ function Game({ toNextpage }) {
                             </div>
 
                             <div className="game-asteroids-layer">
-                                {asteroids.map(asteroid => (
-                                    <img
-                                        key={asteroid.id}
-                                        src={asteroid.image}
-                                        className={asteroid.className}
-                                        alt=""
-                                        draggable="false"
-                                    />
-                                ))}
+                                {asteroids.map(asteroid => {
+                                    const isDestroyed =
+                                        destroyedAsteroids.includes(
+                                            asteroid.id
+                                        );
+
+                                    return (
+                                        <div
+                                            key={asteroid.id}
+                                            className={`
+                                                game-asteroid-wrapper
+                                                ${asteroid.className}
+                                                ${
+                                                    isDestroyed
+                                                        ? "asteroid-destroyed"
+                                                        : ""
+                                                }
+                                            `}
+                                        >
+                                            <img
+                                                src={asteroid.image}
+                                                className="game-asteroid-image"
+                                                alt=""
+                                                draggable="false"
+                                            />
+
+                                            <div
+                                                className="asteroid-explosion"
+                                                aria-hidden="true"
+                                            >
+                                                <span />
+                                                <span />
+                                                <span />
+                                                <span />
+                                                <span />
+                                                <span />
+                                            </div>
+                                        </div>
+                                    );
+                                })}
                             </div>
                         </div>
                     </div>
@@ -324,7 +448,14 @@ function Game({ toNextpage }) {
                                 alt=""
                                 draggable="false"
                             />
-                            <p className={`game-message-text ${feedback === "wrong" ? "wrong-message" : ""}`}>
+
+                            <p
+                                className={`game-message-text ${
+                                    feedback === "wrong"
+                                        ? "wrong-message"
+                                        : ""
+                                }`}
+                            >
                                 {getBubbleText()}
                             </p>
                         </div>

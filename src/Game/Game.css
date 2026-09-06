@@ -8,11 +8,6 @@
     -webkit-user-select: none;
 }
 
-
-/* =============================
-   TIMER
-============================= */
-
 .game-timer {
     position: absolute;
     top: 5cqw;
@@ -24,11 +19,6 @@
     z-index: 10;
 }
 
-
-/* =============================
-   ROUND
-============================= */
-
 .game-round {
     position: absolute;
     top: 22cqw;
@@ -38,11 +28,6 @@
     font-weight: 500;
     z-index: 10;
 }
-
-
-/* =============================
-   חיים / פסילות
-============================= */
 
 .game-lives {
     position: absolute;
@@ -72,11 +57,6 @@
     transform: scale(1.08);
 }
 
-
-/* =============================
-   כל הכבוד
-============================= */
-
 .game-correct-text {
     position: absolute;
     top: 21cqw;
@@ -92,11 +72,6 @@
     animation: correctTextEnter 0.4s ease-out both;
 }
 
-
-/* =============================
-   BOARD WRAPPER
-============================= */
-
 .game-board-wrapper {
     position: absolute;
     top: 40cqw;
@@ -105,11 +80,6 @@
     width: 82cqw;
     height: 82cqw;
 }
-
-
-/* =============================
-   אותיות
-============================= */
 
 .game-column-labels {
     position: absolute;
@@ -125,11 +95,6 @@
     z-index: 10;
 }
 
-
-/* =============================
-   מספרים
-============================= */
-
 .game-row-labels {
     position: absolute;
     top: 0;
@@ -143,11 +108,6 @@
     z-index: 10;
 }
 
-
-/* =============================
-   BOARD
-============================= */
-
 .game-board {
     position: absolute;
     inset: 0;
@@ -155,11 +115,6 @@
     border-radius: 2cqw;
     overflow: hidden;
 }
-
-
-/* =============================
-   GRID
-============================= */
 
 .game-grid {
     position: absolute;
@@ -184,11 +139,6 @@
     -webkit-tap-highlight-color: transparent;
 }
 
-
-/* =============================
-   תשובה נכונה
-============================= */
-
 .correct-cell {
     background-color: rgba(46, 255, 31, 0.45);
     box-shadow:
@@ -196,11 +146,6 @@
         0 0 4cqw rgba(44, 255, 31, 0.9);
     animation: correctCellGlow 0.8s ease-in-out infinite alternate;
 }
-
-
-/* =============================
-   תשובה שגויה
-============================= */
 
 .wrong-cell {
     background-color: rgba(255, 25, 25, 0.45);
@@ -210,11 +155,6 @@
     animation: wrongCellShake 0.35s ease;
 }
 
-
-/* =============================
-   אסטרואידים
-============================= */
-
 .game-asteroids-layer {
     position: absolute;
     inset: 0;
@@ -223,16 +163,22 @@
     z-index: 5;
 }
 
-.game-asteroid {
+.game-asteroid-wrapper {
     position: absolute;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.game-asteroid-image {
+    display: block;
+    width: 100%;
+    height: auto;
     object-fit: contain;
     pointer-events: none;
     user-select: none;
     -webkit-user-drag: none;
 }
-
-
-/* אסטרואיד גדול */
 
 .asteroid-one {
     width: 20cqw;
@@ -244,9 +190,6 @@
         infinite alternate;
 }
 
-
-/* אסטרואיד קטן */
-
 .asteroid-two {
     width: 16cqw;
     top: 27%;
@@ -256,9 +199,6 @@
         ease-in-out
         infinite alternate;
 }
-
-
-/* אסטרואיד בינוני */
 
 .asteroid-three {
     width: 22cqw;
@@ -270,9 +210,6 @@
         infinite alternate;
 }
 
-
-/* אסטרואיד נוסף */
-
 .asteroid-four {
     width: 27cqw;
     bottom: 3%;
@@ -283,10 +220,82 @@
         infinite alternate;
 }
 
+.asteroid-five {
+    width: 18cqw;
+    top: 68%;
+    left: 4%;
+    animation:
+        asteroidFloatFive 3.4s
+        ease-in-out
+        infinite alternate;
+}
 
-/* =============================
-   SPACESHIP AREA
-============================= */
+.asteroid-explosion {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0;
+}
+
+.asteroid-explosion span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: white;
+    box-shadow:
+        0 0 1.5cqw white,
+        0 0 3cqw #ffdb58,
+        0 0 6cqw #ff7b22;
+    opacity: 0;
+}
+
+.asteroid-destroyed .game-asteroid-image {
+    animation:
+        asteroidExplode
+        0.8s
+        ease-out
+        forwards;
+}
+
+.asteroid-destroyed .asteroid-explosion {
+    opacity: 1;
+    animation:
+        asteroidExplosionFlash
+        0.8s
+        ease-out
+        forwards;
+}
+
+.asteroid-destroyed .asteroid-explosion span:nth-child(1) {
+    animation: asteroidParticleOne 0.8s ease-out forwards;
+}
+
+.asteroid-destroyed .asteroid-explosion span:nth-child(2) {
+    animation: asteroidParticleTwo 0.8s ease-out forwards;
+}
+
+.asteroid-destroyed .asteroid-explosion span:nth-child(3) {
+    animation: asteroidParticleThree 0.8s ease-out forwards;
+}
+
+.asteroid-destroyed .asteroid-explosion span:nth-child(4) {
+    animation: asteroidParticleFour 0.8s ease-out forwards;
+}
+
+.asteroid-destroyed .asteroid-explosion span:nth-child(5) {
+    animation: asteroidParticleFive 0.8s ease-out forwards;
+}
+
+.asteroid-destroyed .asteroid-explosion span:nth-child(6) {
+    animation: asteroidParticleSix 0.8s ease-out forwards;
+}
 
 .game-spaceship-area {
     position: absolute;
@@ -307,11 +316,6 @@
         ease-in-out
         infinite;
 }
-
-
-/* =============================
-   SPEECH BUBBLE
-============================= */
 
 .game-message {
     position: absolute;
@@ -354,11 +358,6 @@
     color: red;
     font-size: 3.3cqw;
 }
-
-
-/* =============================
-   ANIMATIONS
-============================= */
 
 @keyframes correctCellGlow {
     from {
@@ -476,5 +475,159 @@
         transform:
             translate(-5cqw, -3cqw)
             rotate(6deg);
+    }
+}
+
+@keyframes asteroidFloatFive {
+    from {
+        transform:
+            translate(0, 0)
+            rotate(3deg);
+    }
+
+    to {
+        transform:
+            translate(4cqw, -5cqw)
+            rotate(-7deg);
+    }
+}
+
+@keyframes asteroidExplode {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+        filter: brightness(1);
+    }
+
+    20% {
+        opacity: 1;
+        transform: scale(1.25);
+        filter:
+            brightness(2.5)
+            drop-shadow(0 0 2cqw white);
+    }
+
+    45% {
+        opacity: 1;
+        transform: scale(0.9);
+        filter:
+            brightness(4)
+            drop-shadow(0 0 5cqw #ff9d24);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0);
+        filter: brightness(6);
+    }
+}
+
+@keyframes asteroidExplosionFlash {
+    0% {
+        opacity: 1;
+        transform:
+            translate(-50%, -50%)
+            scale(0.2);
+    }
+
+    40% {
+        opacity: 1;
+        transform:
+            translate(-50%, -50%)
+            scale(1.6);
+        filter:
+            drop-shadow(0 0 4cqw white)
+            drop-shadow(0 0 8cqw #ff9224);
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translate(-50%, -50%)
+            scale(2);
+    }
+}
+
+@keyframes asteroidParticleOne {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+
+    to {
+        opacity: 0;
+        transform:
+            translate(-550%, -400%)
+            scale(0.3);
+    }
+}
+
+@keyframes asteroidParticleTwo {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+
+    to {
+        opacity: 0;
+        transform:
+            translate(450%, -450%)
+            scale(0.25);
+    }
+}
+
+@keyframes asteroidParticleThree {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+
+    to {
+        opacity: 0;
+        transform:
+            translate(600%, 50%)
+            scale(0.35);
+    }
+}
+
+@keyframes asteroidParticleFour {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+
+    to {
+        opacity: 0;
+        transform:
+            translate(350%, 500%)
+            scale(0.25);
+    }
+}
+
+@keyframes asteroidParticleFive {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+
+    to {
+        opacity: 0;
+        transform:
+            translate(-450%, 450%)
+            scale(0.3);
+    }
+}
+
+@keyframes asteroidParticleSix {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+
+    to {
+        opacity: 0;
+        transform:
+            translate(-650%, 50%)
+            scale(0.25);
     }
 }
