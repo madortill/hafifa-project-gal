@@ -2,11 +2,17 @@ html,
 body {
     margin: 0;
     padding: 0;
+
     width: 100%;
     height: 100%;
+
     direction: rtl;
+
     overflow: hidden;
+    overscroll-behavior: none;
+
     font-family: Rubik;
+
     color: white;
     background-color: black;
 }
@@ -24,16 +30,20 @@ body {
 
 #root {
     width: 100vw;
+
     height: 100vh;
-    height: 100dvh;
+    height: 100svh;
 
     display: flex;
+
     justify-content: center;
     align-items: center;
 
     overflow: hidden;
 
-    background-image: url("../media/OpenPage/space-background.jpg");
+    background-image:
+        url("../media/OpenPage/space-background.jpg");
+
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -45,20 +55,30 @@ body {
     width: min(
         100vw,
         440px,
-        calc(100dvh * 440 / 956)
+        calc(100vh * 440 / 956)
+    );
+
+    width: min(
+        100vw,
+        440px,
+        calc(100svh * 440 / 956)
     );
 
     aspect-ratio: 440 / 956;
 
     flex-shrink: 0;
+
     overflow: hidden;
 
-    background-image: url("../media/OpenPage/space-background.jpg");
+    background-image:
+        url("../media/OpenPage/space-background.jpg");
+
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 
     text-align: center;
+
     container-type: inline-size;
 }
 
@@ -71,56 +91,46 @@ h1 {
 }
 
 .main-title {
-    font-weight: 800;
     font-size: 18cqw;
+    font-weight: 800;
+
     margin-top: 4cqw;
 }
 
 .secondary-title {
-    font-weight: 800;
     font-size: 7cqw;
-}
-
-.open-page-div {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    width: 100%;
-    transform: translate(-50%, -50%);
-}
-
-.open-page-button {
-    position: absolute;
-    top: 60%;
-    left: 50%;
+    font-weight: 800;
 }
 
 .comet-button-div {
     position: absolute;
-    top: 65%;
+
     left: 50%;
 
     width: 90cqw;
     height: 36cqw;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    color: black;
 
     transform:
         translate(-50%, -50%)
         rotate(25deg);
 
-    color: black;
+    background-image:
+        url("../media/comet.png");
 
-    background-image: url("../media/comet.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     cursor: pointer;
 
-    transition: transform 0.3s ease;
+    transition:
+        transform 0.3s ease;
 }
 
 .comet-button-div p {
@@ -139,13 +149,20 @@ h1 {
 
 .comet-button {
     width: 110%;
+
     display: block;
-    transform: rotate(30deg);
+
+    transform:
+        rotate(30deg);
 }
 
 .logo {
     position: absolute;
-    left: 2cqw;
+
     top: 2cqw;
+    left: 2cqw;
+
     width: 20cqw;
+
+    z-index: 50;
 }
